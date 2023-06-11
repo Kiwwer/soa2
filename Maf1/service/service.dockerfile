@@ -9,4 +9,4 @@ COPY __init__.py service/__init__.py
 COPY server/ service/server/
 EXPOSE 8080-8080
 
-ENTRYPOINT ["python", "-m", "service.server.service"]
+ENTRYPOINT ["python", "-m", "service.server.serviced"]
