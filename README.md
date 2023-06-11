@@ -11,7 +11,7 @@ SOA HW2,3,4
 4. Простой flask-сервер, сконнекченный с базой данных, позволяющий делать REST-запросы
 
 
-### 1. gRPC-сервер
+### 1. gRPC-сервер (HW2, p1,2;HW3, p1,2)
 Язык: Python
 Файл: Maf1/service/server/service.py (нестабильная докер-версия: Maf1/service/server/serviced.py)
 (gRPC- и proto-файлы доступны в папке)
@@ -42,7 +42,7 @@ MAX_PLAYERS: отвечает за количество игроков в одн
 CRIM_CNT: отвечает за количество мафий среди игроков
 COMI_CNT: отвечает за количество комиссаров среди игроков
 
-### 2. Клиент
+### 2. Клиент (HW2, p1,2;HW3, p1,2)
 Язык: Python
 Файл: Maf1/service/server/client.py
 
@@ -74,7 +74,7 @@ COMI_CNT: отвечает за количество комиссаров сре
 RABBITMQHOST: адрес сервиса RabbitMQ
 SERVER_ADDRESS: стандартный адрес gRPC-сервера
 
-### 3. REST-API
+### 3. REST-API (HW4 p.1)
 Язык: Python
 Файлы: Maf1/service/server/app.py, Maf1/service/server/helper.py, Maf1/service/server/users.db
 
@@ -87,4 +87,4 @@ SERVER_ADDRESS: стандартный адрес gRPC-сервера
 
 Запуск: (Linux) python3 -m flask run из папки Maf1/service/server
 Взаимодействие (пример):
-
+curl --location --request POST 'http://127.0.0.1:5000/restapp/api/v1.0/users' --header 'Content-Type: application/json' --data-raw '{"nickname": "TEST123", "avatar_filepath": "TEST321", "gender": "F", "email": "TEST1@TEST2.TEST3"}'
