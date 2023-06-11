@@ -1,0 +1,64 @@
+syntax = "proto3";
+ 
+service EngineServer {
+  rpc Register (RegQuery) returns (RegResponse) {}
+  rpc UnRegister (UnRegQuery) returns (UnRegResponse) {}
+  rpc Update (StatusQuery) returns (StatusResponse) {}
+  rpc Action (ActionQuery) returns (ActionResponse) {}
+  rpc ChatQueue (ChatGetQueue) returns (ChatQueueResponse) {}
+  rpc Chat (ChatMessage) returns (ChatResponse) {}
+}
+ 
+message ActionQuery {
+  int64 typeId = 1;
+  int64 targetId = 2;
+  int64 uniqueClientId = 3;
+}
+
+message ActionResponse {
+  int64 uniqueClientId = 1;
+  int64 resultId = 2;
+}
+
+message RegQuery {
+  int64 typeId = 1;
+  string Name = 2;
+}
+message RegResponse {
+  int64 uniqueClientId = 1;
+}
+
+message UnRegQuery {
+  int64 uniqueClientId = 1;
+}
+message UnRegResponse {
+  int64 resultId = 1;
+}
+
+message StatusQuery {
+  int64 uniqueClientId = 1;
+}
+
+message StatusResponse {
+  string State = 1;
+  int64 uniqueClientId = 2;
+}
+
+message ChatGetQueue {
+  int64 uniqueClientId = 1;
+}
+
+message ChatQueueResponse {
+  int64 resultId = 1;
+  string Queues = 2;
+}
+
+message ChatMessage {
+  int64 uniqueClientId = 1;
+  int64 channel = 2;
+  string Msg = 3;
+}
+
+message ChatResponse {
+  int64 resultId = 1;
+}

@@ -1,0 +1,22 @@
+services:
+  mafservice:
+    image: mxryd/mafservice
+    build:
+      context: ./service
+      dockerfile: service.dockerfile
+    environment:
+      SERVICE_PORT: 8080
+      MAX_PHASE_TIME: 90
+      MAX_PLAYERS: 8
+      CRIM_CNT: 2
+      COMI_CNT: 1
+      RABBITMQHOST: rabbitmq
+    ports:
+      - 8080:8080
+
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
