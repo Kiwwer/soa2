@@ -387,6 +387,7 @@ class Servicer(mafiahandler_pb2_grpc.EngineServerServicer):
         return mafiahandler_pb2.ActionResponse(uniqueClientId=ucid, resultId=-1)
 
 def serve():
+    time.sleep(30)
     global RabbitMQHost
     global playernumber
     global maxphasetime
