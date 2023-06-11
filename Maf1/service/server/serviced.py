@@ -220,6 +220,10 @@ class GameState:
             elif value != -1:
                 balance += 1
                 alive += 1
+        if alive == balance:
+            self.ending = 1
+        elif balance <= 0:
+            self.ending = -1
         return
             
         
