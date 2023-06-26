@@ -397,7 +397,7 @@ def serve():
     global maxphasetime
     global rolescounts
     global ChatWrapper
-    RabbitMQHost = os.environ.get('RABBITMQHOST', 'localhost')
+    RabbitMQHost = os.environ.get('RABBITMQHOST', 'rabbitmq')
     ChatWrapper = ChatWrapperClass()
     port = os.environ.get('SERVICE_PORT', '8080')
     maxphasetime = float(os.environ.get('MAX_PHASE_TIME', '90'))
