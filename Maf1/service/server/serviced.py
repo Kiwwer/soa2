@@ -4,8 +4,8 @@ import logging
 from threading import Lock
 
 import grpc
-import service.server.mafiahandlerd_pb2 as mafiahandlerd_pb2
-import service.server.mafiahandlerd_pb2_grpc as mafiahandlerd_pb2_grpc
+import service.server.mafiahandlerd_pb2 as mafiahandler_pb2
+import service.server.mafiahandlerd_pb2_grpc as mafiahandler_pb2_grpc
 # service.server.
 import os
 import pika
@@ -19,7 +19,7 @@ nextid = 1
 games = []
 ucidstatus = dict()
 
-RabbitMQHostname = 'localhost'
+RabbitMQHostname = 'rabbitmq'
 maxphasetime = 90
 playernumber = 8
 rolescounts = [0, 2, 1]
@@ -242,7 +242,7 @@ class GameState:
 class ChatWrapperClass:
     def __init__(self):
         connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host=RabbitMQHostname))
+            pika.ConnectionParameters(host='rabbitmq'))
         self.chans = connection.channel()
     
     def InitRoom(self, gameid):
@@ -256,7 +256,7 @@ class ChatWrapperClass:
             truemsg = ucidstatus[ucid][0] + ' whispers >>> ' + msg
         self.chans.basic_publish(exchange=str(chanq), routing_key='', body=truemsg)
 
-ChatWrapper = ChatWrapperClass()
+ChatWrapper = 0
 
 class Servicer(mafiahandler_pb2_grpc.EngineServerServicer):
 
@@ -395,8 +395,10 @@ def serve():
     global RabbitMQHost
     global playernumber
     global maxphasetime
-    global rolescount
+    global rolescounts
+    global ChatWrapper
     RabbitMQHost = os.environ.get('RABBITMQHOST', 'localhost')
+    ChatWrapper = ChatWrapperClass()
     port = os.environ.get('SERVICE_PORT', '8080')
     maxphasetime = float(os.environ.get('MAX_PHASE_TIME', '90'))
     maxphasetime = int(os.environ.get('MAX_PLAYERS', '8'))
