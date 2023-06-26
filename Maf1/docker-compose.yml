@@ -13,6 +13,8 @@ services:
       RABBITMQHOST: rabbitmq
     ports:
       - 8080:8080
+    links:
+    - rabbitmq
 
   rabbitmq:
     image: rabbitmq:3.12-management
