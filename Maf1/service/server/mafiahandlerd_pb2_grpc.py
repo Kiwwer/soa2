@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import mafiahandlerd_pb2 as mafiahandler__pb2
+import service.server.mafiahandlerd_pb2 as mafiahandler__pb2
 # service.server.
 
 class EngineServerStub(object):
