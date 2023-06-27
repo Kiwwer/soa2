@@ -460,14 +460,14 @@ def EnableChat():
     elif response.resultId == 0:
         chatchannels = [response.Queues]
         chatthreads = [0]
-        chatthreads[0] = Process(target=ChatThread, args=[chatchannels[0]])
+        chatthreads[0] = Process(target=ChatThread, args=[chatchannels[0]], daemon=True)
     elif response.resultId == -1:
         chatchannels = list(map(str, response.Queues.split(":")))
         chatthreads = [0, 0]
-        chatthreads[0] = Process(target=ChatThread, args=[chatchannels[0]])
-        chatthreads[1] = Process(target=ChatThread, args=[chatchannels[1]])
+        chatthreads[0] = Process(target=ChatThread, args=[chatchannels[0]], daemon=True)
+        chatthreads[1] = Process(target=ChatThread, args=[chatchannels[1]], daemon=True)
     for i in range(len(chatthreads)):
-        chatthreads[i].run()
+        chatthreads[i].start()
     return
 
 def DisableChat():
