@@ -434,7 +434,7 @@ chatthreads = []
 def ChatThread(chans):
     chans = str(chans)
     connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host=RabbitMQHostname))
+        pika.ConnectionParameters(heartbeat=0, host=RabbitMQHostname))
     channel = connection.channel()
     channel.exchange_declare(exchange=chans, exchange_type='fanout')
     result = channel.queue_declare(queue='', exclusive=True)
