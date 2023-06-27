@@ -400,7 +400,7 @@ def serve():
     ChatWrapper = ChatWrapperClass()
     port = os.environ.get('SERVICE_PORT', '8080')
     maxphasetime = float(os.environ.get('MAX_PHASE_TIME', '90'))
-    numplayers = int(os.environ.get('MAX_PLAYERS', '8'))
+    playernumber = int(os.environ.get('MAX_PLAYERS', '8'))
     rolescounts[1] = int(os.environ.get('CRIM_CNT', '2'))
     rolescounts[2] = int(os.environ.get('COMI_CNT', '1'))
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
